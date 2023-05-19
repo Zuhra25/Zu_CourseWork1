@@ -20,9 +20,9 @@ public class Main {
         System.out.printf("сумма затрат на зарплаты в месяц: %.2f руб%n", sumSalary());
         sumSalary();
         System.out.printf("%n%n");
-        minSelary();
+        System.out.printf("Сотрудник с максимальной ЗП - %s%n", minSelary());
         System.out.printf("%n%n");
-        maxSelary();
+        System.out.printf("Сотрудник с максимальной ЗП - %s%n", maxSelary());
         System.out.printf("%n%n");
         System.out.printf("среднее значение зарплат: %.2f руб%n", meanSalary());
         meanSalary();
@@ -31,9 +31,12 @@ public class Main {
         System.out.printf("%n%n");
 
 //////////////////повышенный уровень
+        System.out.printf("Индексация ЗП: %n%n");
         indexedSalary(0);
         System.out.printf("%n%n");
-        minSalaryInDep();
+        System.out.printf("Сотрудник с минимальной ЗП в отделе- %s %n%n", minSalaryInDep(2));
+        System.out.printf("Сотрудник с максимальной ЗП в отделе- %s %n%n", maxSalaryInDep(2));
+
 
     }
 
@@ -52,28 +55,24 @@ public class Main {
         return sum;
     }
 
-    static void minSelary() {
-        double minSelary = employees[0].getSalary();
+    static Employee minSelary() {
         Employee poorEmployee = employees[0];
         for (Employee i : employees) {
-            if (minSelary > i.getSalary()) {
+            if (poorEmployee.getSalary() > i.getSalary()) {
                 poorEmployee = i;
-                minSelary = i.getSalary();
             }
         }
-        System.out.printf("Сотрудник с минимальной ЗП - %s (ЗП = %.2f руб)%n", poorEmployee.getFullName(), poorEmployee.getSalary());
+        return poorEmployee;
     }
 
-    static void maxSelary() {
-        double maxSelary = employees[0].getSalary();
+    static Employee maxSelary() {
         Employee richEmployee = employees[0];
         for (Employee i : employees) {
-            if (maxSelary < i.getSalary()) {
+            if (richEmployee.getSalary() < i.getSalary()) {
                 richEmployee = i;
-                maxSelary = i.getSalary();
             }
         }
-        System.out.printf("Сотрудник с максимальной ЗП - %s (ЗП = %.2f руб)%n", richEmployee.getFullName(), richEmployee.getSalary());
+        return richEmployee;
     }
 
     static double meanSalary() {
@@ -101,52 +100,27 @@ public class Main {
         }
     }
 
-    static void minSalaryInDep() {
-        double minSelary = employees[0].getSalary();
-        Employee poorEmployeeInDep1 = employees[0];
-        Employee poorEmployeeInDep2 = employees[0];
-        Employee poorEmployeeInDep3 = employees[0];
-        Employee poorEmployeeInDep4 = employees[0];
-        Employee poorEmployeeInDep5 = employees[0];
-
+    static Employee minSalaryInDep(int dep) {
+        Employee poorEmployee = employees[0];
+        double min = maxSelary().getSalary();
         for (Employee i : employees) {
-            switch (i.getDepartment()){
-                case 1:
-                    if (minSelary > i.getSalary()) {
-                        poorEmployeeInDep1 = i;
-                        minSelary = i.getSalary();
+            if (i.getDepartment() == dep && i.getSalary() <= min ) {
+                poorEmployee = i;
+                min=i.getSalary();
             }
-                case 2:
-                    if (minSelary > i.getSalary()) {
-                        poorEmployeeInDep2 = i;
-                        minSelary = i.getSalary();
-                    }
         }
-
+        return poorEmployee;
+    }
+    static Employee maxSalaryInDep(int dep) {
+        Employee richEmployee = employees[0];
+        double max = minSelary().getSalary();
+        for (Employee i : employees) {
+            if (i.getDepartment() == dep && max <= i.getSalary()) {
+                richEmployee = i;
+                max=i.getSalary();
+            }
         }
-        for (int i=1; i<5;i++){
-
-        }
-
-//        for (Employee i : employees) {
-//            if (i.getDepartment() == 1) {
-//                if (minSelary > i.getSalary()) {
-//                    poorEmployee = i;
-//                    minSelary = i.getSalary();
-//                }
-//            }
-//
-//            if (i.getDepartment() == 2) {
-//                if (minSelary > i.getSalary()) {
-//                    poorEmployee = i;
-//                    minSelary = i.getSalary();
-//                }
-//            }
-//        }
-            System.out.printf("Сотрудник с минимальной ЗП - %s (ЗП = %.2f руб) в отделе № %s%n", poorEmployee.getFullName(), poorEmployee.getSalary(), poorEmployee.getDepartment());
-
-
-
-
+        return richEmployee;
+    }
 
 }
