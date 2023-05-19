@@ -31,27 +31,33 @@ public class Main {
         System.out.printf("%n%n");
 
 //////////////////повышенный уровень
-        System.out.printf("Индексация ЗП: %n%n");
+        System.out.printf("Индексация ЗП: %n");
         indexedSalary(0);
         System.out.printf("%n%n");
         System.out.printf("Сотрудник с минимальной ЗП в отделе- %s %n%n", minSalaryInDep(2));
         System.out.printf("Сотрудник с максимальной ЗП в отделе- %s %n%n", maxSalaryInDep(2));
         System.out.printf("Сумма затрат на ЗП по отделу- %.2f %n%n", sumSalaryInDep(5));
-        System.out.printf("Средняя ЗП по отделу - %.2f %n%n", meanSalaryInDep(5));
-        indexedSalaryInDep(1, 0);
+        System.out.printf("Средняя ЗП по отделу - %.2f %n", meanSalaryInDep(5));
         System.out.printf("%n%n");
+        System.out.printf("Индексация по отделу: %n");
+        indexedSalaryInDep(1, 0);
+        System.out.printf("%nВсе сотрудники (кроме отдела):%n");
         printEmployeeWithoutDep();
+        System.out.printf("%n%n");
+        salaruLessArg(50_000);
+        System.out.printf("%n%n");
+        salaruMoreArg(50_000);
 
     }
 
-    static void printEmployee() { //базовый. a. Получить список всех сотрудников
+    static void printEmployee() { //базовый. 8.a. Получить список всех сотрудников
         System.out.print("список всех сотрудников:");
         for (Employee i : employees) {
             System.out.print(i);
         }
     }
 
-    static double sumSalary() { //базовый. b. Посчитать сумму затрат на зарплаты в месяц.
+    static double sumSalary() { //базовый. 8.b. Посчитать сумму затрат на зарплаты в месяц.
         double sum = 0;
         for (Employee i : employees) {
             sum += i.getSalary();
@@ -59,7 +65,7 @@ public class Main {
         return sum;
     }
 
-    static Employee minSelary() { //базовый. c. Найти сотрудника с минимальной зарплатой
+    static Employee minSelary() { //базовый. 8.c. Найти сотрудника с минимальной зарплатой
         Employee poorEmployee = employees[0];
         for (Employee i : employees) {
             if (poorEmployee.getSalary() > i.getSalary()) {
@@ -69,7 +75,7 @@ public class Main {
         return poorEmployee;
     }
 
-    static Employee maxSelary() {  //базовый. d. Найти сотрудника с максимальной зарплатой.
+    static Employee maxSelary() {  //базовый. 8.d. Найти сотрудника с максимальной зарплатой.
         Employee richEmployee = employees[0];
         for (Employee i : employees) {
             if (richEmployee.getSalary() < i.getSalary()) {
@@ -79,7 +85,7 @@ public class Main {
         return richEmployee;
     }
 
-    static double meanSalary() {  //базовый. e. Подсчитать среднее значение зарплат
+    static double meanSalary() {  //базовый. 8.e. Подсчитать среднее значение зарплат
         double mean = 0;
         int n = 0;
         for (Employee i : employees) {
@@ -89,7 +95,7 @@ public class Main {
         return mean;
     }
 
-    static void fio() {  //базовый. f. Получить Ф. И. О. всех сотрудников
+    static void fio() {  //базовый. 8.f. Получить Ф. И. О. всех сотрудников
         String fio = employees[0].getFullName();
         for (Employee i : employees) {
             fio = i.getFullName();
@@ -104,7 +110,7 @@ public class Main {
         }
     }
 
-    static Employee minSalaryInDep(int dep) {  //повышенный. a. Сотрудника с минимальной зарплатой.
+    static Employee minSalaryInDep(int dep) {  //повышенный. 2.a. Сотрудника с минимальной зарплатой.
         Employee poorEmployee = employees[0];
         double min = maxSelary().getSalary();
         for (Employee i : employees) {
@@ -116,7 +122,7 @@ public class Main {
         return poorEmployee;
     }
 
-    static Employee maxSalaryInDep(int dep) {  //повышенный. b. Сотрудника с максимальной зарплатой.
+    static Employee maxSalaryInDep(int dep) {  //повышенный. 2.b. Сотрудника с максимальной зарплатой.
         Employee richEmployee = employees[0];
         double max = minSelary().getSalary();
         for (Employee i : employees) {
@@ -128,7 +134,7 @@ public class Main {
         return richEmployee;
     }
 
-    static double sumSalaryInDep(int dep) {   //повышенный. c. Сумму затрат на зарплату по отделу
+    static double sumSalaryInDep(int dep) {   //повышенный. 2.c. Сумму затрат на зарплату по отделу
         double sum = 0;
         for (Employee i : employees) {
             if (i.getDepartment() == dep) {
@@ -138,7 +144,7 @@ public class Main {
         return sum;
     }
 
-    static double meanSalaryInDep(int dep) {  //повышенный. d. Среднюю зарплату по отделу
+    static double meanSalaryInDep(int dep) {  //повышенный. 2.d. Среднюю зарплату по отделу
         int count = 0;
         double sum = 0;
         for (Employee i : employees) {
@@ -151,7 +157,7 @@ public class Main {
         return sum;
     }
 
-    static void indexedSalaryInDep(int dep, double arg) { //повышенный. e. Проиндексировать ЗП отдела
+    static void indexedSalaryInDep(int dep, double arg) { //повышенный. 2.e. Проиндексировать ЗП отдела
         for (Employee i : employees) {
             if (i.getDepartment() == dep) {
                 i.setSalary(i.getSalary() * (arg / 100 + 1));
@@ -160,9 +166,24 @@ public class Main {
         }
     }
 
-    static void printEmployeeWithoutDep() {  //повышенный. f. Напечатать всех сотрудников (кроме отдела)
+    static void printEmployeeWithoutDep() {  //повышенный. 2.f. Напечатать всех сотрудников (кроме отдела)
         for (Employee i : employees) {
-            System.out.printf("Сотрудник - %s, ЗП - %.2f, ID - %s%n",i.getFullName(), i.getSalary(), i.getId());
+            System.out.printf("Сотрудник - %s, ЗП - %.2f, ID - %s%n", i.getFullName(), i.getSalary(), i.getId());
+        }
+    }
+
+    static void salaruLessArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой меньше числа
+        for (Employee i : employees) {
+            if (i.getSalary() < arg) {
+                System.out.printf("ЗП менее %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
+            }
+        }
+    }
+    static void salaruMoreArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой больше (или равно) числа
+        for (Employee i : employees) {
+            if (i.getSalary() >= arg) {
+                System.out.printf("ЗП более %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
+            }
         }
     }
 
