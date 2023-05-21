@@ -1,6 +1,7 @@
 package packCourseWork1;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Employee {
         private String fullName;
@@ -46,7 +47,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format ("%nСотрудник %s / Отдел № %s / ЗП %s руб / ID %s",fullName, department, salary, id);
+        return String.format ("%nСотрудник %s / Отдел № %s / ЗП %.2f руб / ID %s",fullName, department, salary, id);
     }
 
 }

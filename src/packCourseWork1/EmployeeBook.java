@@ -3,41 +3,11 @@ package packCourseWork1;
 public class EmployeeBook {
     private final Employee[] employees;
     private static int count = 0;//счетчик добавленного сотрудника
-    private int size=10;//10 сотрудников
+    private int size = 10;//10 сотрудников
 
     public EmployeeBook() {
         this.employees = new Employee[size];
     }
-
-    public void addEmployee(String name, int dep, double salary) {  //ОчСложно. 4.a. Добавить нового сотрудника
-        if (count < size) {
-            for (int i=0; i<size; i++) {
-                if (employees[i] == null) {
-                    employees[i] = new Employee(name, dep, salary);
-                   count++;
-                   break;
-                }
-            }
-        }
-    }
-    public void deleteEmployee(int id) {  //ОчСложно. 4.b. Удалить сотрудника
-            for (int i=0; i<size; i++) {
-                if (employees[i] != null && employees[i].getId() == id) {
-                    employees[i] = null;
-                   count--;
-                }
-            }
-    }
-//    public void deleteEmployee(String fullname) {  //ОчСложно. 4.b. Удалить сотрудника
-//        for (int i=0; i<size; i++) {
-//            if (employees[i] != null && employees[i].getFullName() == fullname) {
-//                employees[i] = null;
-//                count--;
-//            }
-//        }
-//    }
-
-
 
     void printEmployee() { //базовый. 8.a. Получить список всех сотрудников
         System.out.print("список всех сотрудников:");
@@ -161,7 +131,7 @@ public class EmployeeBook {
         }
     }
 
-    void salaruLessArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой меньше числа
+    void salaryLessArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой меньше числа
         for (Employee i : employees) {
             if (i.getSalary() < arg) {
                 System.out.printf("ЗП менее %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
@@ -169,7 +139,7 @@ public class EmployeeBook {
         }
     }
 
-    void salaruMoreArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой больше (или равно) числа
+    void salaryMoreArg(double arg) {   //повышенный. 3.b. сотрудников с зарплатой больше (или равно) числа
         for (Employee i : employees) {
             if (i.getSalary() >= arg) {
                 System.out.printf("ЗП более %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
@@ -177,4 +147,62 @@ public class EmployeeBook {
         }
     }
 
+    public void addEmployee(String name, int dep, double salary) {  //ОчСложно. 4.a. Добавить нового сотрудника
+        if (count < size) {
+            for (int i = 0; i < size; i++) {
+                if (employees[i] == null) {
+                    employees[i] = new Employee(name, dep, salary);
+                    count++;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void deleteEmployee(int id) {  //ОчСложно. 4.b. Удалить сотрудника
+        for (int i = 0; i < size; i++) {
+            if (employees[i] != null && employees[i].getId() == id) {
+                employees[i] = null;
+                count--;
+            }
+        }
+    }
+
+    public void deleteEmployee(String fullname) {  //ОчСложно. 4.b. Удалить сотрудника
+        for (int i = 0; i < size; i++) {
+            if (employees[i] != null && employees[i].getFullName() == fullname) {
+                employees[i] = null;
+                count--;
+            }
+        }
+    }
+
+    public void changeSalary(String fullname, double coefficient) {  //ОчСложно. 5.a. Изменить ЗП сотрудника
+        for (Employee i : employees) {
+            if (i != null && i.getFullName() == fullname) {
+                i.setSalary(i.getSalary() * coefficient);
+            }
+        }
+    }
+
+    public void changeDep(String fullname, int dep) {  //ОчСложно. 5.b. Изменить отдел
+        for (Employee i : employees) {
+            if (i != null && i.getFullName() == fullname) {
+                i.setDepartment(dep);
+            }
+        }
+    }
+
+    int depp = 5; // кол-во отделов
+
+    public void printDepAndFullnames() {  //ОчСложно. 6. Ф. И. О. всех сотрудников по отделам
+        for (int i = 1; i <= 5; i++) {
+            System.out.printf("Отдел №%s:%n", i);
+            for (Employee j : employees) {
+                if (j != null && j.getDepartment() == i) {
+                    System.out.printf("%s%n", j.getFullName());
+                }
+            }
+        }
+    }
 }

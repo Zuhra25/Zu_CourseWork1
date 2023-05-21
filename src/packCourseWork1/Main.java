@@ -18,41 +18,54 @@ public class Main {
         employees.addEmployee("Максимов Максим Максимович", 5, 75_000);
 
         employees.printEmployee();
-//        System.out.printf("%n%n");
-//        System.out.printf("сумма затрат на зарплаты в месяц: %.2f руб%n", employees.sumSalary());
-//        //EmployeeBook.sumSalary();
-//        System.out.printf("%n%n");
-//        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.minSelary());
-//        System.out.printf("%n%n");
-//        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.maxSelary());
-//        System.out.printf("%n%n");
-//        System.out.printf("среднее значение зарплат: %.2f руб%n", employees.meanSalary());
-//        employees.meanSalary();
-//        System.out.printf("%n%n");
-//        employees.fio();
-//        System.out.printf("%n%n");
-//
-////////////////////повышенный уровень
-//        System.out.printf("Индексация ЗП: %n");
-//        employees.indexedSalary(0);
-//        System.out.printf("%n%n");
-//        System.out.printf("Сотрудник с минимальной ЗП в отделе- %s %n%n", employees.minSalaryInDep(2));
-//        System.out.printf("Сотрудник с максимальной ЗП в отделе- %s %n%n", employees.maxSalaryInDep(2));
-//        System.out.printf("Сумма затрат на ЗП по отделу- %.2f %n%n", employees.sumSalaryInDep(5));
-//        System.out.printf("Средняя ЗП по отделу - %.2f %n", employees.meanSalaryInDep(5));
-//        System.out.printf("%n%n");
-//        System.out.printf("Индексация по отделу: %n");
-//        employees.indexedSalaryInDep(1, 0);
-//        System.out.printf("%nВсе сотрудники (кроме отдела):%n");
-//        employees.printEmployeeWithoutDep();
-//        System.out.printf("%n%n");
-//        employees.salaruLessArg(50_000);
-//        System.out.printf("%n%n");
-//        employees.salaruMoreArg(50_000);
-        System.out.println();
-        //employees.deleteEmployee("Денисов Денис Денисович");
-        employees.deleteEmployee(2);
+        System.out.printf("%n%n");
+        System.out.printf("сумма затрат на зарплаты в месяц: %.2f руб%n", employees.sumSalary());
+        //EmployeeBook.sumSalary();
+        System.out.printf("%n%n");
+        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.minSelary());
+        System.out.printf("%n%n");
+        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.maxSelary());
+        System.out.printf("%n%n");
+        System.out.printf("среднее значение зарплат: %.2f руб%n", employees.meanSalary());
+        employees.meanSalary();
+        System.out.printf("%n%n");
+        employees.fio();
+        System.out.printf("%n%n");
+
+//////////////////повышенный уровень
+        System.out.printf("Индексация ЗП: %n");
+        employees.indexedSalary(0);
+        System.out.printf("%n%n");
+        System.out.printf("Сотрудник с минимальной ЗП в отделе- %s %n%n", employees.minSalaryInDep(2));
+        System.out.printf("Сотрудник с максимальной ЗП в отделе- %s %n%n", employees.maxSalaryInDep(2));
+        System.out.printf("Сумма затрат на ЗП по отделу- %.2f %n%n", employees.sumSalaryInDep(5));
+        System.out.printf("Средняя ЗП по отделу - %.2f %n", employees.meanSalaryInDep(5));
+        System.out.printf("%n%n");
+        System.out.printf("Индексация по отделу: %n");
+        employees.indexedSalaryInDep(1, 0);
+        System.out.printf("%nВсе сотрудники (кроме отдела):%n");
+        employees.printEmployeeWithoutDep();
+        System.out.printf("%n%n");
+        employees.salaryLessArg(50_000);
+        System.out.printf("%n%n");
+        employees.salaryMoreArg(50_000);
+        System.out.println("Удалили сотрудника");
+        employees.deleteEmployee("Денисов Денис Денисович");
+        //employees.deleteEmployee(2);
         employees.printEmployee();
+        System.out.println();
+
+        System.out.println("Изменили ЗП");
+        employees.changeSalary("Александров Александр Александрович", 1.1);
+        employees.printEmployee();
+        System.out.println();
+
+        System.out.println("Изменили департамент");
+        employees.changeDep("Петров Петр Петрович", 1);
+        employees.printEmployee();
+        System.out.println();
+
+        employees.printDepAndFullnames();
 
     }
 
