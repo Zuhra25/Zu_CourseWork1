@@ -1,90 +1,60 @@
 package packCourseWork1;
 
 public class Main {
-    static Employee[] employees = new Employee[10];
+//    static Employee[] employees = new Employee[10];
 
     public static void main(String[] args) {
-        employees[0] = new Employee("Иванов Иван Иванович", 1, 50_000);
-        employees[1] = new Employee("Петров Петр Петрович", 2, 60_000);
-        employees[2] = new Employee("Денисов Денис Денисович", 3, 30_000);
-        employees[3] = new Employee("Данилов Данил Данилович", 4, 80_000);
-        employees[4] = new Employee("Евгеньев Евгений Евгеньевич", 5, 90_000);
-        employees[5] = new Employee("Александров Александр Александрович", 1, 100_000);
-        employees[6] = new Employee("Владимиров Владимир Вадимирович", 2, 45_000);
-        employees[7] = new Employee("Борисов Борис Борисович", 3, 55_000);
-        employees[8] = new Employee("Дмитриев Дмитрий Дмитриевич", 4, 65_000);
-        employees[9] = new Employee("Максимов Максим Максимович", 5, 75_000);
+        EmployeeBook employees = new EmployeeBook();
 
-        printEmployee();
-        System.out.printf("%n%n");
-        System.out.printf("сумма затрат на зарплаты в месяц: %.2f руб%n",  sumSalary());
-        sumSalary();
-        System.out.printf("%n%n");
-        minSelary();
-        System.out.printf("%n%n");
-        maxSelary();
-        System.out.printf("%n%n");
-        System.out.printf("среднее значение зарплат: %.2f руб%n", meanSalary());
-        meanSalary();
-        System.out.printf("%n%n");
-        fio();
+        employees.addEmployee("Иванов Иван Иванович", 1, 50_000);
+        employees.addEmployee("Петров Петр Петрович", 2, 60_000);
+        employees.addEmployee("Денисов Денис Денисович", 3, 30_000);
+        employees.addEmployee("Данилов Данил Данилович", 4, 80_000);
+        employees.addEmployee("Евгеньев Евгений Евгеньевич", 5, 90_000);
+        employees.addEmployee("Александров Александр Александрович", 1, 100_000);
+        employees.addEmployee("Владимиров Владимир Вадимирович", 2, 45_000);
+        employees.addEmployee("Борисов Борис Борисович", 3, 55_000);
+        employees.addEmployee("Дмитриев Дмитрий Дмитриевич", 4, 65_000);
+        employees.addEmployee("Максимов Максим Максимович", 5, 75_000);
+
+        employees.printEmployee();
+//        System.out.printf("%n%n");
+//        System.out.printf("сумма затрат на зарплаты в месяц: %.2f руб%n", employees.sumSalary());
+//        //EmployeeBook.sumSalary();
+//        System.out.printf("%n%n");
+//        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.minSelary());
+//        System.out.printf("%n%n");
+//        System.out.printf("Сотрудник с максимальной ЗП - %s%n", employees.maxSelary());
+//        System.out.printf("%n%n");
+//        System.out.printf("среднее значение зарплат: %.2f руб%n", employees.meanSalary());
+//        employees.meanSalary();
+//        System.out.printf("%n%n");
+//        employees.fio();
+//        System.out.printf("%n%n");
+//
+////////////////////повышенный уровень
+//        System.out.printf("Индексация ЗП: %n");
+//        employees.indexedSalary(0);
+//        System.out.printf("%n%n");
+//        System.out.printf("Сотрудник с минимальной ЗП в отделе- %s %n%n", employees.minSalaryInDep(2));
+//        System.out.printf("Сотрудник с максимальной ЗП в отделе- %s %n%n", employees.maxSalaryInDep(2));
+//        System.out.printf("Сумма затрат на ЗП по отделу- %.2f %n%n", employees.sumSalaryInDep(5));
+//        System.out.printf("Средняя ЗП по отделу - %.2f %n", employees.meanSalaryInDep(5));
+//        System.out.printf("%n%n");
+//        System.out.printf("Индексация по отделу: %n");
+//        employees.indexedSalaryInDep(1, 0);
+//        System.out.printf("%nВсе сотрудники (кроме отдела):%n");
+//        employees.printEmployeeWithoutDep();
+//        System.out.printf("%n%n");
+//        employees.salaruLessArg(50_000);
+//        System.out.printf("%n%n");
+//        employees.salaruMoreArg(50_000);
+        System.out.println();
+        //employees.deleteEmployee("Денисов Денис Денисович");
+        employees.deleteEmployee(2);
+        employees.printEmployee();
 
     }
 
-    static void printEmployee() {
-        System.out.print("список всех сотрудников:");
-        for (Employee i : employees) {
-            System.out.print(i);
-        }
-    }
 
-    static double sumSalary() {
-        double sum = 0;
-        for (Employee i : employees) {
-            sum += i.getSalary();
-        }
-        return sum;
-    }
-
-    static void minSelary() {
-        double minSelary = employees[0].getSalary();
-        Employee poorEmployee = employees[0];
-        for (Employee i : employees) {
-            if (minSelary > i.getSalary()) {
-                poorEmployee = i;
-                minSelary = i.getSalary();
-            }
-        }
-             System.out.printf("Сотрудник с минимальной ЗП - %s (ЗП = %.2f руб)%n", poorEmployee.getFullName(), poorEmployee.getSalary());
-    }
-
-    static void maxSelary() {
-        double maxSelary = employees[0].getSalary();
-        Employee richEmployee = employees[0];
-        for (Employee i : employees) {
-            if (maxSelary < i.getSalary()) {
-                richEmployee = i;
-                maxSelary = i.getSalary();
-            }
-        }
-        System.out.printf("Сотрудник с максимальной ЗП - %s (ЗП = %.2f руб)%n", richEmployee.getFullName(), richEmployee.getSalary());
-    }
-
-    static double meanSalary() {
-        double mean = 0;
-        int n=0;
-        for (Employee i : employees) {
-            n++;
-        }
-        mean = sumSalary() /n;
-        return mean;
-    }
-
-    static void fio() {
-        String fio = employees[0].getFullName();
-        for (Employee i : employees) {
-            fio = i.getFullName();
-           System.out.printf("Ф. И. О. - %s%n", fio);
-        }
-    }
 }

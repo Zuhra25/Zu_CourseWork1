@@ -33,7 +33,7 @@ public class Employee {
     }
 
     public int getId() {
-        return id;
+        return count;
     }
 
     public void setDepartment(int department) {
