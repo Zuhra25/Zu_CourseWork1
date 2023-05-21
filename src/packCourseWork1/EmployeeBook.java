@@ -9,14 +9,14 @@ public class EmployeeBook {
         this.employees = new Employee[size];
     }
 
-    void printEmployee() { //базовый. 8.a. Получить список всех сотрудников
+    public void printEmployee() { //базовый. 8.a. Получить список всех сотрудников
         System.out.print("список всех сотрудников:");
         for (Employee i : employees) {
             System.out.print(i);
         }
     }
 
-    double sumSalary() { //базовый. 8.b. Посчитать сумму затрат на зарплаты в месяц.
+    public double sumSalary() { //базовый. 8.b. Посчитать сумму затрат на зарплаты в месяц.
         double sum = 0;
         for (Employee i : employees) {
             sum += i.getSalary();
@@ -24,7 +24,7 @@ public class EmployeeBook {
         return sum;
     }
 
-    Employee minSelary() { //базовый. 8.c. Найти сотрудника с минимальной зарплатой
+    public Employee minSelary() { //базовый. 8.c. Найти сотрудника с минимальной зарплатой
         Employee poorEmployee = employees[0];
         for (Employee i : employees) {
             if (poorEmployee.getSalary() > i.getSalary()) {
@@ -34,7 +34,7 @@ public class EmployeeBook {
         return poorEmployee;
     }
 
-    Employee maxSelary() {  //базовый. 8.d. Найти сотрудника с максимальной зарплатой.
+    public Employee maxSelary() {  //базовый. 8.d. Найти сотрудника с максимальной зарплатой.
         Employee richEmployee = employees[0];
         for (Employee i : employees) {
             if (richEmployee.getSalary() < i.getSalary()) {
@@ -44,17 +44,21 @@ public class EmployeeBook {
         return richEmployee;
     }
 
-    double meanSalary() {  //базовый. 8.e. Подсчитать среднее значение зарплат
-        double mean = 0;
-        int n = 0;
-        for (Employee i : employees) {
-            n++;
-        }
-        mean = sumSalary() / n;
+//    public double meanSalary() {  //базовый. 8.e. Подсчитать среднее значение зарплат
+//        double mean = 0;
+//        int n = 0;
+//        for (Employee i : employees) {
+//            n++;
+//        }
+//        mean = sumSalary() / n;
+//        return mean;
+//    }
+    public double meanSalary() {  //базовый. 8.e. Подсчитать среднее значение зарплат
+        double mean = sumSalary() / employees.length;
         return mean;
     }
 
-    void fio() {  //базовый. 8.f. Получить Ф. И. О. всех сотрудников
+    public void fio() {  //базовый. 8.f. Получить Ф. И. О. всех сотрудников
         String fio = employees[0].getFullName();
         for (Employee i : employees) {
             fio = i.getFullName();
@@ -62,14 +66,14 @@ public class EmployeeBook {
         }
     }
 
-    void indexedSalary(double arg) {  //повышенный. 1. Проиндексировать ЗП
+    public void indexedSalary(double arg) {  //повышенный. 1. Проиндексировать ЗП
         for (Employee i : employees) {
             i.setSalary(i.getSalary() * (arg / 100 + 1));
             System.out.printf("%s - %.2f%n", i.getFullName(), i.getSalary());
         }
     }
 
-    Employee minSalaryInDep(int dep) {  //повышенный. 2.a. Сотрудника с минимальной зарплатой.
+    public Employee minSalaryInDep(int dep) {  //повышенный. 2.a. Сотрудника с минимальной зарплатой.
         Employee poorEmployee = employees[0];
         double min = maxSelary().getSalary();
         for (Employee i : employees) {
@@ -81,7 +85,7 @@ public class EmployeeBook {
         return poorEmployee;
     }
 
-    Employee maxSalaryInDep(int dep) {  //повышенный. 2.b. Сотрудника с максимальной зарплатой.
+    public Employee maxSalaryInDep(int dep) {  //повышенный. 2.b. Сотрудника с максимальной зарплатой.
         Employee richEmployee = employees[0];
         double max = minSelary().getSalary();
         for (Employee i : employees) {
@@ -93,7 +97,7 @@ public class EmployeeBook {
         return richEmployee;
     }
 
-    double sumSalaryInDep(int dep) {   //повышенный. 2.c. Сумму затрат на зарплату по отделу
+    public double sumSalaryInDep(int dep) {   //повышенный. 2.c. Сумму затрат на зарплату по отделу
         double sum = 0;
         for (Employee i : employees) {
             if (i.getDepartment() == dep) {
@@ -103,7 +107,7 @@ public class EmployeeBook {
         return sum;
     }
 
-    double meanSalaryInDep(int dep) {  //повышенный. 2.d. Среднюю зарплату по отделу
+    public double meanSalaryInDep(int dep) {  //повышенный. 2.d. Среднюю зарплату по отделу
         int count = 0;
         double sum = 0;
         for (Employee i : employees) {
@@ -116,7 +120,7 @@ public class EmployeeBook {
         return sum;
     }
 
-    void indexedSalaryInDep(int dep, double arg) { //повышенный. 2.e. Проиндексировать ЗП отдела
+    public void indexedSalaryInDep(int dep, double arg) { //повышенный. 2.e. Проиндексировать ЗП отдела
         for (Employee i : employees) {
             if (i.getDepartment() == dep) {
                 i.setSalary(i.getSalary() * (arg / 100 + 1));
@@ -125,13 +129,13 @@ public class EmployeeBook {
         }
     }
 
-    void printEmployeeWithoutDep() {  //повышенный. 2.f. Напечатать всех сотрудников (кроме отдела)
+    public void printEmployeeWithoutDep() {  //повышенный. 2.f. Напечатать всех сотрудников (кроме отдела)
         for (Employee i : employees) {
             System.out.printf("Сотрудник - %s, ЗП - %.2f, ID - %s%n", i.getFullName(), i.getSalary(), i.getId());
         }
     }
 
-    void salaryLessArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой меньше числа
+    public void salaryLessArg(double arg) {   //повышенный. 3.a. сотрудников с зарплатой меньше числа
         for (Employee i : employees) {
             if (i.getSalary() < arg) {
                 System.out.printf("ЗП менее %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
@@ -139,7 +143,7 @@ public class EmployeeBook {
         }
     }
 
-    void salaryMoreArg(double arg) {   //повышенный. 3.b. сотрудников с зарплатой больше (или равно) числа
+    public void salaryMoreArg(double arg) {   //повышенный. 3.b. сотрудников с зарплатой больше (или равно) числа
         for (Employee i : employees) {
             if (i.getSalary() >= arg) {
                 System.out.printf("ЗП более %.2f, ID - %s, cотрудник - %s, ЗП - %.2f%n", arg, i.getId(), i.getFullName(), i.getSalary());
@@ -194,6 +198,7 @@ public class EmployeeBook {
     }
 
     int depp = 5; // кол-во отделов
+
     public void printDepAndFullnames() {  //ОчСложно. 6. Ф. И. О. всех сотрудников по отделам
         for (int i = 1; i <= 5; i++) {
             System.out.printf("Отдел №%s:%n", i);
