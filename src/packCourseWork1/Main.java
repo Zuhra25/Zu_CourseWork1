@@ -49,6 +49,8 @@ public class Main {
         employees.salaryLessArg(50_000);
         System.out.printf("%n%n");
         employees.salaryMoreArg(50_000);
+
+////////////////// Уровень - Очень сложно
         System.out.println("Удалили сотрудника");
         employees.deleteEmployee("Денисов Денис Денисович");
         //employees.deleteEmployee(2);
@@ -66,8 +68,5 @@ public class Main {
         System.out.println();
 
         employees.printDepAndFullnames();
-
     }
-
-
 }

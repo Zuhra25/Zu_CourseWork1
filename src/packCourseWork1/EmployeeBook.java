@@ -194,7 +194,6 @@ public class EmployeeBook {
     }
 
     int depp = 5; // кол-во отделов
-
     public void printDepAndFullnames() {  //ОчСложно. 6. Ф. И. О. всех сотрудников по отделам
         for (int i = 1; i <= 5; i++) {
             System.out.printf("Отдел №%s:%n", i);
